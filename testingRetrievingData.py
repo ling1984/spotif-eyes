@@ -11,17 +11,10 @@ redirect_uri = os.getenv('REDIRECT_URI')
 
 
 # actual code
-scope = 'user-top-read'
-ranges = ['short_term', 'medium_term', 'long_term']
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_secret=client_secret, redirect_uri=redirect_uri, scope=scope))
-shorterm, mediterm, longterm = {}, {}, {}
-
-for sp_range in ['short_term']:
-    print("range:", sp_range)
-
-    results = sp.current_user_top_artists(time_range=sp_range, limit=50)
+def getShortTerm():
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_secret=client_secret, redirect_uri=redirect_uri, scope='user-top-read'))
+    results = sp.current_user_top_artists(time_range="short_term", limit=50)
     for i, item in enumerate(results['items']):
-        shorterm[item['name']] = i
+        print(item['name'])
 
-print(shorterm)

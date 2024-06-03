@@ -1,3 +1,4 @@
 .env.documented
 .env.undocumented
 .cache
+__pycache__
